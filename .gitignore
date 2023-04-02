@@ -3,3 +3,4 @@ myvenv
 configuration.py
 .DS_Store
 out 2.csv
+.gradle
