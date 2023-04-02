@@ -1,0 +1,4 @@
+rootProject.name = 'server'
+include 'api'
+include 'batch'
+include 'database'
