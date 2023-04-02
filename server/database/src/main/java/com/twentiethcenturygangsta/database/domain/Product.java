@@ -12,4 +12,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+    private int price;
+    private int salePrice;
+    private String rating;
+    private String detailPageUrl;
+    private String delivery;
+    private int reviewCount;
+    private int buySatisfy;
+    private boolean isMinor;
 }
