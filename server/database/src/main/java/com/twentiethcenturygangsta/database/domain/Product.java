@@ -21,4 +21,6 @@ public class Product {
     private int reviewCount;
     private int buySatisfy;
     private boolean isMinor;
+    private int discount;
+    private int mileage;
 }
