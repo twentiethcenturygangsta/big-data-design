@@ -5,10 +5,13 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@DynamicInsert
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -35,8 +38,9 @@ public class Product {
     private int reviewCount;
     private int buySatisfy;
     private String isMinor;
-//    private int discount;
-//    private int mileage;
+
+    @ColumnDefault("10")
+    private int stock;
 
     @Builder
     public Product(Long id, Seller seller, String code, String name, int price, int salePrice, String rating, String detailPageUrl, String delivery, int reviewCount, int buySatisfy, String isMinor) {
@@ -52,7 +56,5 @@ public class Product {
         this.reviewCount = reviewCount;
         this.buySatisfy = buySatisfy;
         this.isMinor = isMinor;
-//        this.discount = discount;
-//        this.mileage = mileage;
     }
 }
