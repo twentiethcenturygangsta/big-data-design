@@ -1,2 +1,17 @@
 server:
   port: 8080
+
+graphql:
+  tools:
+    schema-location-pattern: "**/*.graphqls"
+    introspection-enabled: true
+  servlet:
+    enabled: true
+    mapping: api/v1/graphql
+    cors-enabled: true
+    cors:
+      allowed-methods: GET, HEAD, POST, PUT, DELETE
+      # allowed-origins:
+    exception-handlers-enabled: true
+    context-setting: per_request_with_instrumentation
+    async-mode-enabled: true
