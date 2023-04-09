@@ -1,0 +1,16 @@
+type ProductImage {
+    id: ID
+    product: Product!
+    base: String!
+    size100: String!
+    size110: String!
+    size120: String!
+    size130: String!
+    size140: String!
+    size150: String!
+    size170: String!
+    size200: String!
+    size250: String!
+    size270: String!
+    size300: String!
+}

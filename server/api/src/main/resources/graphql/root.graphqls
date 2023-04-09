@@ -1,0 +1,14 @@
+schema {
+    query: Query,
+    mutation: Mutation
+}
+
+type Query {
+    getProducts(pageNum: Int, pageSize: Int): [Product!]!
+    getSeller(sellerId: ID!): Seller!
+    getSellers(pageNum: Int, pageSize: Int): [Seller!]!
+}
+
+type Mutation {
+    buyProduct(productId: Int!): Product!
+}
