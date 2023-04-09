@@ -1,0 +1,28 @@
+schema {
+    query: Query,
+    mutation: Mutation
+}
+
+type Product {
+    id: ID,
+    seller: Seller!
+    code: String!
+    name: String!
+    price: Int!
+    salePrice: Int!
+    rating: String!
+    detailPageUrl: String!
+    delivery: String!
+    reviewCount: Int!
+    buySatisfy: Int!
+    isMinor: String!
+}
+
+type Query {
+    getProducts(pageNum: Int, pageSize: Int): [Product!]!
+    getSeller(sellerId: ID!): Seller!
+}
+
+type Mutation {
+    buyProduct(productId: Int!): Product!
+}
