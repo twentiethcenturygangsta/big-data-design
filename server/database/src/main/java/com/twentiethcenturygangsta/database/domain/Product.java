@@ -17,6 +17,8 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Product {
 
+    private static final int STOCK_MINIMUM = 0;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,7 +42,7 @@ public class Product {
     private String isMinor;
 
     @ColumnDefault("10")
-    private int stock;
+    private Long quantity;
 
     @Builder
     public Product(Long id, Seller seller, String code, String name, int price, int salePrice, String rating, String detailPageUrl, String delivery, int reviewCount, int buySatisfy, String isMinor) {
@@ -56,5 +58,16 @@ public class Product {
         this.reviewCount = reviewCount;
         this.buySatisfy = buySatisfy;
         this.isMinor = isMinor;
+    }
+
+    public void decrease(int quantity) {
+        if (hasQuantity(quantity)) {
+            this.quantity = this.quantity - quantity;
+        }
+        throw new RuntimeException("does not decrease product's quantity");
+    }
+
+    public boolean hasQuantity(int quantity) {
+        return this.quantity - quantity >= 0;
     }
 }
