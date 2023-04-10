@@ -6,6 +6,4 @@ plugins {
 
 dependencies {
     implementation project(':database')
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    implementation 'org.redisson:redisson-spring-boot-starter:3.17.4'
 }
