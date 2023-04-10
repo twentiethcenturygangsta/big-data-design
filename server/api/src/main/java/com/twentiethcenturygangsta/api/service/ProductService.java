@@ -18,4 +18,10 @@ public class ProductService {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
         return productRepository.findAll(pageable);
     }
+
+    public void sellProduct(Long id, Long quantity) {
+        Product product = productRepository.findById(id).orElseThrow();
+        product.decrease(quantity);
+        productRepository.save(product);
+    }
 }

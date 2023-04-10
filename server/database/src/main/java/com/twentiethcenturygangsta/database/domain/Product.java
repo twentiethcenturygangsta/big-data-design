@@ -60,14 +60,14 @@ public class Product {
         this.isMinor = isMinor;
     }
 
-    public void decrease(int quantity) {
+    public void decrease(Long quantity) {
         if (hasQuantity(quantity)) {
             this.quantity = this.quantity - quantity;
         }
         throw new RuntimeException("does not decrease product's quantity");
     }
 
-    public boolean hasQuantity(int quantity) {
+    public boolean hasQuantity(Long quantity) {
         return this.quantity - quantity >= 0;
     }
 }
