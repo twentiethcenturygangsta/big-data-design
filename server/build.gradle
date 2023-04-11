@@ -51,6 +51,7 @@ repositories {
 project(':api') {
 	dependencies {
 		compileOnly project(':database')
+		compileOnly project(':cache-redis')
 	}
 }
 
@@ -61,6 +62,11 @@ project(':batch') {
 }
 
 project(':database') {
+	bootJar {enabled = false}
+	jar {enabled = true}
+}
+
+project(':cache-redis') {
 	bootJar {enabled = false}
 	jar {enabled = true}
 }
