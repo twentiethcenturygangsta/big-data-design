@@ -1,12 +1,13 @@
 package com.twentiethcenturygangsta.api.service;
 
+import com.twentiethcenturygangsta.api.config.RestPage;
 import com.twentiethcenturygangsta.database.domain.Product;
 import com.twentiethcenturygangsta.database.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
-import org.springframework.data.domain.Page;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,9 +23,9 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final RedissonClient redissonClient;
 
-    public Page<Product> getProducts(int pageNum, int pageSize) {
+    public RestPage<Product> getProducts(int pageNum, int pageSize) {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
-        return productRepository.findAll(pageable);
+        return new RestPage<>(productRepository.findAll(pageable));
     }
 
     @Transactional
