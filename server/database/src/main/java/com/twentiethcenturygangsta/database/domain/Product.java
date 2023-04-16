@@ -1,30 +1,35 @@
 package com.twentiethcenturygangsta.database.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicInsert;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@DynamicInsert
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Product {
+public class Product implements Serializable {
+
+    private static final int STOCK_MINIMUM = 0;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_id")
     private Seller seller;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductImage> productImages = new ArrayList<>();
     @Column(unique = true)
@@ -40,7 +45,7 @@ public class Product {
     private String isMinor;
 
     @ColumnDefault("10")
-    private int stock;
+    private Long quantity;
 
     @Builder
     public Product(Long id, Seller seller, String code, String name, int price, int salePrice, String rating, String detailPageUrl, String delivery, int reviewCount, int buySatisfy, String isMinor) {
@@ -56,5 +61,16 @@ public class Product {
         this.reviewCount = reviewCount;
         this.buySatisfy = buySatisfy;
         this.isMinor = isMinor;
+    }
+
+    public void decrease(Long quantity) {
+        if (hasQuantity(quantity)) {
+            this.quantity = this.quantity - quantity;
+        }
+        throw new RuntimeException("does not decrease product's quantity");
+    }
+
+    public boolean hasQuantity(Long quantity) {
+        return this.quantity - quantity >= 0;
     }
 }
