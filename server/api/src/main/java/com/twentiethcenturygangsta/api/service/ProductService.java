@@ -24,7 +24,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void sellProduct(Long id, Long quantity) {
+    public void purchaseProduct(Long id, Long quantity) {
         Product product = productRepository.findById(id).orElseThrow();
         product.decrease(quantity);
         productRepository.save(product);

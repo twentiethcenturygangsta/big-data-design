@@ -25,7 +25,7 @@ public class RedissonLockProductClient {
                 log.info("Lock 획득 실패");
                 return;
             }
-            productService.sellProduct(id, quantity);
+            productService.purchaseProduct(id, quantity);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
