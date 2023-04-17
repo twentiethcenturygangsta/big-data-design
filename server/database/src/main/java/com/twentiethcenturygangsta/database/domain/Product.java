@@ -44,7 +44,7 @@ public class Product implements Serializable {
     private int buySatisfy;
     private String isMinor;
 
-    @ColumnDefault("10")
+    @ColumnDefault("100")
     private Long quantity;
 
     @Builder
@@ -61,13 +61,15 @@ public class Product implements Serializable {
         this.reviewCount = reviewCount;
         this.buySatisfy = buySatisfy;
         this.isMinor = isMinor;
+        this.quantity = 100L;
     }
 
     public void decrease(Long quantity) {
         if (hasQuantity(quantity)) {
             this.quantity = this.quantity - quantity;
+        } else {
+            throw new RuntimeException("does not decrease product's quantity");
         }
-        throw new RuntimeException("does not decrease product's quantity");
     }
 
     public boolean hasQuantity(Long quantity) {
