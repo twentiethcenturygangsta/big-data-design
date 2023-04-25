@@ -1,10 +1,8 @@
 package com.twentiethcenturygangsta.database;
 
 import com.twentiethcenturygangsta.database.domain.Product;
-import com.twentiethcenturygangsta.database.domain.Seller;
 import lombok.Builder;
 import lombok.Getter;
-import org.hibernate.annotations.ColumnDefault;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +10,7 @@ import java.util.stream.Collectors;
 @Getter
 public class ProductDto {
 
+    private Long id;
     private SellerDto seller;
     private List<ProductImageDto> productImages;
     private String code;
@@ -30,6 +29,7 @@ public class ProductDto {
 
     @Builder
     public ProductDto(Product product) {
+        this.id = product.getId();
         this.seller = SellerDto.builder().seller(product.getSeller()).build();
         this.productImages = product.getProductImages().stream().map(ProductImageDto::new).collect(Collectors.toList());
         this.code = product.getCode();
