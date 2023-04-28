@@ -18,4 +18,8 @@ public class SellerService {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
         return sellerRepository.findAll(pageable);
     }
+
+    public Seller getSeller(Long sellerId) {
+        return sellerRepository.findById(sellerId).orElseThrow();
+    }
 }

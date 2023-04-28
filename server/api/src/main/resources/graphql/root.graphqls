@@ -5,10 +5,10 @@ schema {
 
 type Query {
     getProducts(pageNum: Int, pageSize: Int): [Product!]!
-    getSeller(sellerId: ID!): Seller!
+    getSeller(id: ID!): Seller!
     getSellers(pageNum: Int, pageSize: Int): [Seller!]!
 }
 
 type Mutation {
-    buyProduct(productId: Int!): Product!
+    purchaseProduct(id: ID!, quantity: Int): Product!
 }

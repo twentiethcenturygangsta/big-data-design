@@ -16,8 +16,14 @@ import java.util.stream.Collectors;
 public class SellerResolver {
     private final SellerService sellerService;
 
+    //    Cacheable
     @SchemaMapping(typeName = "Query", value = "getSellers")
     public List<Seller> getSellers(@Argument int pageNum, @Argument int pageSize) {
         return sellerService.getSellers(pageNum, pageSize).stream().collect(Collectors.toList());
+    }
+
+    @SchemaMapping(typeName = "Query", value = "getSeller")
+    public Seller getSeller(@Argument Long id) {
+        return sellerService.getSeller(id);
     }
 }

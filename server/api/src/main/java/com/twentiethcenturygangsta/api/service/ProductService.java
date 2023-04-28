@@ -1,6 +1,7 @@
 package com.twentiethcenturygangsta.api.service;
 
 import com.twentiethcenturygangsta.api.config.RestPage;
+import com.twentiethcenturygangsta.database.ProductDto;
 import com.twentiethcenturygangsta.database.domain.Product;
 import com.twentiethcenturygangsta.database.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +25,10 @@ public class ProductService {
     }
 
     @Transactional
-    public void purchaseProduct(Long id, Long quantity) {
+    public ProductDto purchaseProduct(Long id, Long quantity) {
         Product product = productRepository.findById(id).orElseThrow();
         product.decrease(quantity);
         productRepository.save(product);
-
+        return ProductDto.builder().product(product).build();
     }
 }
