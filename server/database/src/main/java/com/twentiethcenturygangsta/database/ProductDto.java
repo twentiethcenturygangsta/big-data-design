@@ -1,6 +1,8 @@
 package com.twentiethcenturygangsta.database;
 
 import com.twentiethcenturygangsta.database.domain.Product;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -10,20 +12,20 @@ import java.util.stream.Collectors;
 @Getter
 public class ProductDto {
 
-    private Long id;
-    private SellerDto seller;
-    private List<ProductImageDto> productImages;
-    private String code;
-    private String name;
-    private int price;
-    private int salePrice;
-    private String rating;
-    private String detailPageUrl;
-    private String delivery;
-    private int reviewCount;
-    private int buySatisfy;
-    private String isMinor;
-    private Long quantity;
+    private final Long id;
+    private final SellerDto seller;
+    private final List<ProductImageDto> productImages;
+    private final String code;
+    private final String name;
+    private final int price;
+    private final int salePrice;
+    private final String rating;
+    private final String detailPageUrl;
+    private final String delivery;
+    private final int reviewCount;
+    private final int buySatisfy;
+    private final String isMinor;
+    private final Long quantity;
 
     public ProductDto(){}
 
